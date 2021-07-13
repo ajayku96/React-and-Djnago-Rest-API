@@ -1,0 +1,28 @@
+{% block title %}
+Checkout
+{% endblock %}
+{% block content %}
+{% block body %}
+
+
+
+<div class="container" id="hero">
+    <h1 class="text-center">Checkout</h1>
+    <div class="order-info">
+        <h3 class="text-center">Your order</h3>
+        <ul>
+            <li>
+                4x food example
+                <span>$11</span>
+            </li>
+
+        </ul>
+        <h4>Total: $44</h4>
+    </div>
+    <form action="." method="post" class="order-form">
+        <p><input class="btn btn-primary btn-sm btn-block" type="submit" value="Place order"></p>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}
+{% endblock %}

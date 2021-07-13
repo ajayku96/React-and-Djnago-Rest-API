@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% block body %}
+    only logged in user can view this page
+    <script>
+        $.noConflict();
+
+        jQuery(document).ready(function ($) {
+            console.log("ready")
+            var cookies = document.cookie.split(";")
+            for (let i = 0; i < cookies.length; i++) {
+                var value_cookies = cookies[i].split("=");
+                if (value_cookies[0].trim() == "acess_token") {
+                    var access_token = value_cookies[1]
+                }
+                if (value_cookies[0].trim() == "refresh_token") {
+                    var refresh_token = value_cookies[1]
+                }
+                console.log(access_token)
+            }
+            $.ajax({
+                type: "POST",
+                headers: {
+                    Authorization: 'Bearer ' + access_token
+                },
+
+                success: function (response) {
+                    console.log("success")
+                },
+                error: function (error) {
+                    console.log("this is error")
+                    var errors = error;
+                    console.log(errors.responseJSON);
+                }
+            });
+        })
+
+    </script>
+{% endblock %}
+
